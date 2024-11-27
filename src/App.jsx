@@ -6,9 +6,9 @@ import Favorites from "./pages/Favorites";
 
 function App() {
   return (
-    <>
-      <h1>h1</h1>
-    </>
+    <div className="app-container">
+      <Start />
+    </div>
   );
 }
 
