@@ -28,7 +28,6 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    // Логика редиректа на профиль после авторизации
     if (isLoggedIn) {
       console.log("User is logged in, but no redirect yet.");
     }
@@ -65,15 +64,15 @@ function App() {
     <div className="app-container">
       {showHeader && <Navigation />}
       <Routes>
-        {/* Стартовая страница */}
+        {/* Start page */}
         <Route path="/" element={<Start start={handleStart} />} />
 
-        {/* Страница логина */}
+        {/* Login page */}
         <Route
           path="/login"
           element={
             isLoggedIn ? (
-              <Navigate to="/profile" /> // Перенаправление на профиль, если уже авторизован
+              <Navigate to="/profile" />
             ) : (
               <Login
                 formData={formData}
@@ -85,13 +84,13 @@ function App() {
           }
         />
 
-        {/* Главная страница (доступ только для авторизованных) */}
+        {/* Main page (after login) */}
         <Route
           path="/home"
           element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
         />
 
-        {/* Профиль (доступ только для авторизованных) */}
+        {/* Profile (after login) */}
         <Route
           path="/profile"
           element={
@@ -103,7 +102,7 @@ function App() {
           }
         />
 
-        {/* Избранное (доступ только для авторизованных) */}
+        {/* favorites (after login) */}
         <Route
           path="/favorites"
           element={isLoggedIn ? <Favorites /> : <Navigate to="/login" />}
