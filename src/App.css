@@ -14,3 +14,11 @@
 .links {
   @apply hover:text-red-700 transition-all duration-200;
 }
+
+.login-button {
+  @apply border border-white text-white drop-shadow-lg p-1 rounded-xl hover:bg-gray-400 transition-all duration-200 hover:scale-105;
+}
+
+input.error {
+  border: 2px solid red;
+}

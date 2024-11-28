@@ -1,50 +1,122 @@
-import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./components/Login";
 import Start from "./components/Start";
 import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Navigation from "./components/Navigation";
+import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
+  const [pass] = useState("123");
+  const [formData, setFormData] = useState(() => {
+    const savedData = localStorage.getItem("formData");
+    return savedData ? JSON.parse(savedData) : { username: "", password: "" };
+  });
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    // Логика редиректа на профиль после авторизации
+    if (isLoggedIn) {
+      console.log("User is logged in, but no redirect yet.");
+    }
+  }, [isLoggedIn]);
+
+  const handleLogOut = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("isLoggedIn");
+    navigate("/");
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleStart = () => {
-    navigate("/login"); // Navigate to the login page
+    navigate("/login");
   };
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
-    navigate("/home"); // Navigate to the home page after login
+    if (formData.password === pass) {
+      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", "true");
+      navigate("/profile");
+    } else {
+      setErrorMessage("Unknown password");
+    }
   };
+
+  const showHeader = location.pathname !== "/";
 
   return (
     <div className="app-container">
+      {showHeader && <Navigation />}
       <Routes>
-        {/* Start Page */}
+        {/* Стартовая страница */}
         <Route path="/" element={<Start start={handleStart} />} />
 
-        {/* Login Page */}
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        {/* Страница логина */}
+        <Route
+          path="/login"
+          element={
+            isLoggedIn ? (
+              <Navigate to="/profile" /> // Перенаправление на профиль, если уже авторизован
+            ) : (
+              <Login
+                formData={formData}
+                onInputChange={handleInputChange}
+                onLogin={handleLogin}
+                errorMessage={errorMessage}
+              />
+            )
+          }
+        />
 
-        {/* Home Page */}
+        {/* Главная страница (доступ только для авторизованных) */}
         <Route
           path="/home"
-          element={isLoggedIn ? <Home /> : <Login onLogin={handleLogin} />}
+          element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
         />
 
-        {/* Other Routes */}
+        {/* Профиль (доступ только для авторизованных) */}
         <Route
           path="/profile"
-          element={isLoggedIn ? <Profile /> : <Login onLogin={handleLogin} />}
+          element={
+            isLoggedIn ? (
+              <Profile formData={formData} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
+
+        {/* Избранное (доступ только для авторизованных) */}
         <Route
           path="/favorites"
-          element={isLoggedIn ? <Favorites /> : <Login onLogin={handleLogin} />}
+          element={isLoggedIn ? <Favorites /> : <Navigate to="/login" />}
         />
       </Routes>
+      {isLoggedIn && (
+        <button
+          className="border border-black px-4 rounded-md my-5"
+          onClick={handleLogOut}
+        >
+          Log Out
+        </button>
+      )}
     </div>
   );
 }
