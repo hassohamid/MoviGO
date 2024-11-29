@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import Start from "./components/Start";
 import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -29,7 +29,7 @@ function App() {
           element={<Login setFormData={setFormData} formData={formData} />}
         />
         <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Profile formData={formData} />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </div>
