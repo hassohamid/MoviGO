@@ -39,6 +39,7 @@ export default function Login() {
       alert("No registered users found. Please register first.");
       return;
     }
+
     //Kolla om det finns en anvandare med username + password
     let loggedInUser = users.find((user) => {
       return user.username === loginUsername && user.password === loginPassword;
@@ -54,18 +55,9 @@ export default function Login() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleLogin();
-  };
-
   return (
     <section className="bg-gray-900 h-screen w-screen flex flex-col items-center justify-center">
-      <form
-        id="login-form"
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-5"
-      >
+      <div className="flex flex-col gap-5">
         <label
           className="text-white text-2xl font-extrabold drop-shadow-md"
           // htmlFor="username"
@@ -104,33 +96,37 @@ export default function Login() {
         {errorMessage && (
           <h1 className="text-red-500 text-center">{errorMessage}</h1>
         )}
-        <h3 className="text-white my-10">Not a user yet? Register here: </h3>
-        <label
-          htmlFor=""
-          className="text-white text-2xl font-extrabold drop-shadow-md"
-        >
-          Username
-        </label>
-        <input
-          type="text"
-          placeholder="Username"
-          onChange={(e) => setRegisterUser(e.target.value)}
-        />
-        <label
-          htmlFor=""
-          className="text-white text-2xl font-extrabold drop-shadow-md"
-        >
-          Password
-        </label>
-        <input
-          type="text"
-          placeholder="Password"
-          onChange={(e) => setRegisterPassword(e.target.value)}
-        />
-        <button className="login-button" onClick={handleRegister}>
-          Register
-        </button>
-      </form>
+        <div className="flex flex-col gap-5">
+          <h3 className="text-white my-10">Not a user yet? Register here: </h3>
+          <label
+            htmlFor=""
+            className="text-white text-2xl font-extrabold drop-shadow-md"
+          >
+            Username
+          </label>
+          <input
+            type="text"
+            placeholder="Username"
+            onChange={(e) => setRegisterUser(e.target.value)}
+            className="p-1 rounded-md shadow-lg"
+          />
+          <label
+            htmlFor=""
+            className="text-white text-2xl font-extrabold drop-shadow-md"
+          >
+            Password
+          </label>
+          <input
+            type="text"
+            placeholder="Password"
+            onChange={(e) => setRegisterPassword(e.target.value)}
+            className="p-1 rounded-md shadow-lg"
+          />
+          <button className="login-button" onClick={handleRegister}>
+            Register
+          </button>
+        </div>
+      </div>
     </section>
   );
 }
