@@ -61,7 +61,7 @@ function App() {
   const showHeader = location.pathname !== "/";
 
   return (
-    <div className="app-container">
+    <>
       {showHeader && <Navigation />}
       <Routes>
         {/* Start page */}
@@ -116,7 +116,7 @@ function App() {
           Log Out
         </button>
       )}
-    </div>
+    </>
   );
 }
 

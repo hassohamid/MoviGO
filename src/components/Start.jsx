@@ -1,19 +1,29 @@
-import { AnimatedBackground } from "animated-backgrounds";
+import React from "react";
+import { AiFillStar } from "react-icons/ai";
+import VantaBackground from "./VantaBackground"; // Import the Vanta background component
+
 export default function Start({ start }) {
   return (
-    <section className="my-5 w-[400px] flex flex-col gap-5 items-center">
-      <AnimatedBackground animationName="auroraBorealis" blendMode="lighten" />
-      <article className="text-center text-white text-5xl font-extrabold drop-shadow-md">
-        Welcome to ...{" "}
-      </article>
-      <p className="text-white">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat nam ea
-        dolore, quidem obcaecati repellat ipsa aliquam incidunt hic dolorum
-        optio amet, modi ipsum omnis.
-      </p>
+    <>
+      <VantaBackground />
+      <img src="src/assets/start.png" alt="Website Logo" className="logo" />
+      <div className="start-container"></div>
       <button onClick={start} className="start-button">
-        Let's start
+        Browse
       </button>
-    </section>
+      <div className="rating">
+        <h1>
+          {" "}
+          <span className="font-bold"> 500K+ </span> Active Users
+        </h1>
+        <div className="stars">
+          <AiFillStar color="gold" size="30px" className="star-icon" />
+          <AiFillStar color="gold" size="30px" className="star-icon" />
+          <AiFillStar color="gold" size="30px" className="star-icon" />
+          <AiFillStar color="gold" size="30px" className="star-icon" />
+          <AiFillStar color="gold" size="30px" className="star-icon" />
+        </div>
+      </div>
+    </>
   );
 }
