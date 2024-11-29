@@ -6,10 +6,7 @@
 
 * {
   font-family: "Roboto";
-}
-
-.app-container {
-  @apply flex flex-col items-center justify-center h-screen w-screen;
+  user-select: none;
 }
 
 .links {
@@ -37,26 +34,35 @@ input.error {
   padding: 12px 30px;
   border-radius: 5px;
   border: none;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   letter-spacing: 3px;
   width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popcorn {
+  height: 20px;
+  margin-left: 6px;
+  margin-bottom: 2px;
 }
 
 .start-button:hover {
-  background-color: #000000; /* Darker Red */
+  background-color: #9e0109;
+  transition: 0.6s;
   transform: scale(1.05);
 }
 
 .start-button:active {
-  transform: scale(1); /* No scale effect when clicked */
+  transform: scale(1);
 }
 
 .start-button:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Focus effect */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -93,4 +99,95 @@ input.error {
 .star-icon:hover {
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  cursor: default;
+}
+
+.movigo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movigo h1 {
+  font-size: 2.25rem;
+  color: white;
+  font-weight: 800;
+  letter-spacing: -0.016em;
+}
+
+.movigo h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(213, 213, 213, 0.8);
+  letter-spacing: -0.016em;
+}
+
+.subtitles {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitles p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  color: rgba(213, 213, 213, 0.8);
+  font-weight: 500;
+  letter-spacing: -0.016em;
+}
+
+/* .browse {
+  color: rgb(255, 213, 0);
+}
+
+.pick {
+  color: rgb(255, 213, 0);
+} */
+
+.track {
+  color: red;
+}
+
+/* MOBILE VERSION IN PROGRESS, UNTIL THEN */
+
+.media {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(5, 0, 26);
+  color: rgb(0, 0, 0);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .media {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .media img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .main-content {
+    display: none;
+  }
 }
