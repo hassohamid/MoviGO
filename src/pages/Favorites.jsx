@@ -1,7 +1,11 @@
+import Navigation from "../components/Navigation";
 export default function Favorites() {
   return (
-    <div>
-      <h1>This is ... </h1>
-    </div>
+    <>
+      <Navigation />
+      <div>
+        <h1>This is Favorites...</h1>
+      </div>
+    </>
   );
 }
