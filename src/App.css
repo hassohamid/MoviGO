@@ -131,7 +131,6 @@ input.error {
   letter-spacing: -0.016em;
 }
 
-<<<<<<< HEAD
 .subtitles {
   display: flex;
   flex-direction: column;
@@ -208,8 +207,6 @@ nav {
   color: white;
 }
 
-=======
->>>>>>> origin/main
 /* MOBILE VERSION IN PROGRESS, UNTIL THEN */
 
 .media {
