@@ -4,6 +4,20 @@ import { FaCheck } from "react-icons/fa";
 
 export default function Start({ start }) {
   const countStars = 5;
+  const limes = [
+    {
+      id: 1,
+      description: "Get personalized movie recommendations.",
+    },
+    {
+      id: 2,
+      description: "Track your favorite films and watch history.",
+    },
+    {
+      id: 3,
+      description: "Easily find where to stream your movies.",
+    },
+  ];
   return (
     <>
       <div className="media">
@@ -19,26 +33,22 @@ export default function Start({ start }) {
         <div className="intro">
           <div className="movigo">
             <h1>
-              <span className="browse"> Browse. </span>{" "}
-              <span className="pick">Pick.</span>{" "}
-              <span className="track">Track!</span>
+              <span> Browse. </span>
+              <span>Pick.</span>
+              <span className="text-red-600">Track!</span>
             </h1>
             <h4>
               Browse movies, save your favorites, and stay up to date with the
               latest hits.
             </h4>
           </div>
-          <div className="subtitles">
-            <p>
-              <FaCheck color="lime" /> Get personalized movie recommendations.
-            </p>
-            <p>
-              <FaCheck color="lime" /> Track your favorite films and watch
-              history.
-            </p>
-            <p>
-              <FaCheck color="lime" /> Easily find where to stream your movies.
-            </p>
+          <div className="flex flex-col items-start">
+            {limes.map((item, i) => (
+              <div key={i} className="flex flex-row-reverse items-center gap-2">
+                <p className="text-white">{item.description}</p>
+                <FaCheck color="lime" />
+              </div>
+            ))}
           </div>
         </div>
 
