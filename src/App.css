@@ -90,6 +90,10 @@ input.error {
   align-items: center;
   gap: 0.2rem;
   cursor: default;
+  background-color: rgb(10, 10, 10);
+  width: 100%;
+  padding: 10px;
+  height: 100%;
 }
 
 .rating h1 {
@@ -111,6 +115,9 @@ input.error {
   gap: 20px;
   cursor: default;
   margin-top: 20px;
+  width: 100%;
+
+  padding: 10px;
 }
 
 .movigo {
