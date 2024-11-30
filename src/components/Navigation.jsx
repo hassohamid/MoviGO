@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
+import { RxAvatar } from "react-icons/rx";
+import { MdFavorite } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
 
 export default function Navigation() {
   return (
-    <header className="fixed top-0 left-0 bg-slate-400 w-screen">
-      <nav className="flex justify-center gap-5 p-5 text-white font-extrabold drop-shadow-md">
-        <Link to="/home" className="links">
-          Home
+    <header>
+      <nav>
+        <Link to="/home" className="home">
+          <AiFillHome size={50} />
         </Link>
-        <Link to="/favorites" className="links">
-          Favorites
+        <Link to="/favorites" className="favorites">
+          <MdFavorite size={50} />
         </Link>
-        <Link to="/profile" className="links">
-          My Profile
+        <Link to="/profile" className="avatar">
+          <RxAvatar size={50} />
         </Link>
       </nav>
     </header>

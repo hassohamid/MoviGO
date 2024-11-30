@@ -145,16 +145,36 @@ input.error {
   letter-spacing: -0.016em;
 }
 
-/* .browse {
-  color: rgb(255, 213, 0);
-}
-
-.pick {
-  color: rgb(255, 213, 0);
-} */
-
 .track {
   color: red;
+}
+
+/* HEADER */
+
+header {
+  position: relative;
+}
+
+nav {
+  display: flex;
+}
+
+.avatar {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+}
+
+.home {
+  position: absolute;
+  right: 50%;
+  margin: 20px;
+}
+
+.favorites {
+  position: absolute;
+  right: 40%;
+  margin: 20px;
 }
 
 /* MOBILE VERSION IN PROGRESS, UNTIL THEN */
