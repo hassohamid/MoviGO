@@ -44,7 +44,7 @@ export default function Profile() {
   return (
     <>
       <Navigation />
-      <section className="flex flex-col items-center mt-20">
+      <section className="flex flex-col items-center mt-20 ">
         <h1>
           Welcome to the profile page,{" "}
           {currentUser?.username && capitalizeWord(currentUser.username)}!

@@ -41,7 +41,10 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <section className="main-content">
+      <section
+        className="min-h-screen"
+        style={{ backgroundColor: "rgb(12, 12, 12)" }}
+      >
         <div className="flex justify-center items-center flex-col gap-5">
           {/* <div className=" h-max flex flex-col justify-center items-center gap-5">
             <label
