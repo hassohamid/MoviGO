@@ -91,7 +91,7 @@ export default function Home() {
             <button
               onClick={prevPage}
               className="text-white text-2xl border border-white px-4 rounded-lg hover:scale-105 hover:bg-slate-500 transition-all duration-200"
-              disabled={page === 1} // Блокируем кнопку, если это первая страница
+              disabled={page === 1}
             >
               Previous
             </button>
