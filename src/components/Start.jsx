@@ -2,6 +2,7 @@ import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 import VantaBackground from "./VantaBackground";
+import axios from "axios";
 
 const App = ({ start }) => {
   return (
@@ -42,6 +43,10 @@ const App = ({ start }) => {
               <FaCheck color="lime" /> Easily find where to stream your movies.
             </p>
           </div>
+        </div>
+
+        <div className="movie-container">
+          <img src="" alt="" />
         </div>
 
         <button onClick={start} className="start-button">
