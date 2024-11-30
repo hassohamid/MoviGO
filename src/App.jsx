@@ -21,27 +21,16 @@ function App() {
   };
 
   return (
-    <>
-      {showHeader && <Navigation />}
-      <Routes>
-        <Route path="/" element={<Start start={handleStart} />} />
-        <Route
-          path="/login"
-          element={<Login setFormData={setFormData} formData={formData} />}
-        />
-        <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
-      {isLoggedIn && (
-        <button
-          className="border border-black px-4 rounded-md my-5"
-          onClick={handleLogOut}
-        >
-          Log Out
-        </button>
-      )}
-    </>
+    <Routes>
+      <Route path="/" element={<Start start={handleStart} />} />
+      <Route
+        path="/login"
+        element={<Login setFormData={setFormData} formData={formData} />}
+      />
+      <Route path="/home" element={<Home />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/favorites" element={<Favorites />} />
+    </Routes>
   );
 }
 
