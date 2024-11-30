@@ -2,7 +2,8 @@ import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 
-const App = ({ start }) => {
+export default function Start({ start }) {
+  const countStars = 5;
   return (
     <>
       <div className="media">
@@ -50,16 +51,17 @@ const App = ({ start }) => {
             <span className="font-bold">500K+</span> Active Users
           </h1>
           <div className="stars">
-            <AiFillStar color="gold" size="30px" className="star-icon" />
-            <AiFillStar color="gold" size="30px" className="star-icon" />
-            <AiFillStar color="gold" size="30px" className="star-icon" />
-            <AiFillStar color="gold" size="30px" className="star-icon" />
-            <AiFillStar color="gold" size="30px" className="star-icon" />
+            {[...Array(countStars)].map((_, i) => (
+              <AiFillStar
+                key={i}
+                color="gold"
+                size="30px"
+                className="star-icon"
+              />
+            ))}
           </div>
         </div>
       </div>
     </>
   );
-};
-
-export default App;
+}
