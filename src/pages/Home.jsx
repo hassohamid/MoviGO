@@ -46,7 +46,6 @@ export default function Home() {
           className="border px-4 py-2 rounded-md mb-4"
         />
 
-        {/* Кнопка для поиска */}
         <button
           onClick={handleSearch}
           className="border px-4 py-2 rounded-md bg-blue-500 text-white mb-4"
