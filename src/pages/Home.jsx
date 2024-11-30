@@ -1,79 +1,93 @@
-import Navigation from "../components/Navigation";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import LoginInput from "../components/LoginInput";
 
-export default function Home() {
-  const [data, setData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
+export default function Login() {
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
-  const getData = async () => {
-    if (!searchTerm) return;
+  const [registerUsername, setRegisterUser] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
-    try {
-      const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=6665ca&s=${searchTerm}`
-      );
-      setData(response.data.Search);
-      console.log(response);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    let newUser = { username: registerUsername, password: registerPassword };
+
+    if (localStorage.getItem("users")) {
+      let users = JSON.parse(localStorage.getItem("users"));
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+    } else {
+      localStorage.setItem("users", JSON.stringify([newUser]));
     }
+
+    setRegisterUser("");
+    setRegisterPassword("");
+    alert("Registration successful! You can now log in.");
   };
 
-  const handleSearch = () => {
-    setIsSearching(true); // Начать поиск
-    getData();
-  };
+  const handleLogin = () => {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-  useEffect(() => {
-    if (isSearching) {
-      setIsSearching(false); // Сбросить состояние после выполнения запроса
+    let loggedInUser = users.find(
+      (user) =>
+        user.username === loginUsername && user.password === loginPassword
+    );
+
+    if (loggedInUser) {
+      sessionStorage.setItem("currentUser", JSON.stringify(loggedInUser));
+      setLoginUsername("");
+      setLoginPassword("");
+      navigate("/profile");
+    } else {
+      setErrorMessage("User is not registered");
     }
-  }, [data]);
+  };
 
   return (
-    <>
-      <Navigation />
-      <div className="w-full flex justify-center items-center flex-col gap-5 p-4">
-        <h1>You may looking for some film for the evening...</h1>
-
-        <input
-          type="text"
-          placeholder="Search for movies"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border px-4 py-2 rounded-md mb-4"
+    <section className="bg-gray-900 h-screen w-screen flex flex-col items-center justify-center">
+      <div className="flex flex-col gap-5">
+        <LoginInput
+          label="Username"
+          placeholder="Username"
+          value={loginUsername}
+          onChange={(e) => setLoginUsername(e.target.value)}
         />
-
-        {/* Кнопка для поиска */}
-        <button
-          onClick={handleSearch}
-          className="border px-4 py-2 rounded-md bg-blue-500 text-white mb-4"
-        >
-          Search
+        <LoginInput
+          label="Password"
+          type="password"
+          placeholder="Password"
+          value={loginPassword}
+          onChange={(e) => setLoginPassword(e.target.value)}
+        />
+        <button onClick={handleLogin} className="login-button">
+          Login
         </button>
-
-        {data && data.length > 0 ? (
-          <div className="flex flex-wrap justify-center gap-5 mt-[30rem]">
-            {data.map((item, i) => (
-              <div
-                key={i}
-                className="flex flex-wrap flex-col items-center max-w-xs w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
-              >
-                <h1 className="text-center">{item.Title}</h1>
-                <img
-                  className="w-full max-w-[200px] rounded-md"
-                  src={item.Poster}
-                  alt={item.Title}
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-center">No data...</p>
+        {errorMessage && (
+          <h1 className="text-red-500 text-center">{errorMessage}</h1>
         )}
+        <div className="flex flex-col gap-5">
+          <h3 className="text-white my-10">Not a user yet? Register here: </h3>
+          <LoginInput
+            label="Username"
+            placeholder="Username"
+            value={registerUsername}
+            onChange={(e) => setRegisterUser(e.target.value)}
+          />
+          <LoginInput
+            label="Password"
+            placeholder="Password"
+            value={registerPassword}
+            onChange={(e) => setRegisterPassword(e.target.value)}
+          />
+          <button className="login-button" onClick={handleRegister}>
+            Register
+          </button>
+        </div>
       </div>
-    </>
+    </section>
   );
 }

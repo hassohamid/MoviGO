@@ -58,10 +58,7 @@ export default function Login() {
   return (
     <section className="bg-gray-900 h-screen w-screen flex flex-col items-center justify-center">
       <div className="flex flex-col gap-5">
-        <label
-          className="text-white text-2xl font-extrabold drop-shadow-md"
-          // htmlFor="username"
-        >
+        <label className="text-white text-2xl font-extrabold drop-shadow-md">
           Username
         </label>
         <input
