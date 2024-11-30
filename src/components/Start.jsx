@@ -41,10 +41,6 @@ const App = ({ start }) => {
           </div>
         </div>
 
-        <div className="movie-container">
-          <img src="" alt="" />
-        </div>
-
         <button onClick={start} className="start-button">
           Browse{" "}
           <img src="src/assets/popcorn.png" alt="Popcorn" className="popcorn" />
