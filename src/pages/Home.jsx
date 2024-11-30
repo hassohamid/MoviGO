@@ -36,7 +36,7 @@ export default function Home() {
     <>
       <Navigation />
       <div className="main-content bg-neutral-950">
-        <div className=" flex justify-center items-center flex-col gap-5">
+        <div className="flex justify-center items-center flex-col gap-5">
           <div className="mt-20 h-screen">
             <input
               type="text"
@@ -51,7 +51,6 @@ export default function Home() {
             >
               Search
             </button>
-
             {data && data.length > 0 ? (
               <div className="flex flex-wrap justify-center gap-5 mt-[30rem]">
                 {data.map((item, i) => (

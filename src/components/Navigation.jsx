@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
+import { CiBookmarkPlus } from "react-icons/ci";
 
 export default function Navigation() {
   return (
-    <header className="fixed top-0 left-0 bg-slate-400 w-screen">
-      <nav className="flex justify-center gap-5 p-5 text-white font-extrabold drop-shadow-md">
-        <Link to="/home" className="links">
-          Home
+    <header>
+      <nav>
+        <img src="src/assets/testlogo.png" alt="Web Logo" className="logonav" />
+        <Link to="/home" className="home">
+          Browse
         </Link>
-        <Link to="/favorites" className="links">
-          Favorites
+        <Link to="/favorites" className="favorites">
+          <CiBookmarkPlus size={30} /> Your Lists
         </Link>
-        <Link to="/profile" className="links">
-          My Profile
+        <Link to="/profile" className="avatar">
+          <img src="src/assets/hasso.jpeg" alt="" className="userImg" />
         </Link>
       </nav>
     </header>
