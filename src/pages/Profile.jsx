@@ -27,15 +27,16 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem("currentUser")) {
-      setCurrentUser(JSON.parse(sessionStorage.getItem("currentUser")));
-      console.log(currentUser);
+    const storedUser = sessionStorage.getItem("currentUser");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setCurrentUser(parsedUser);
+      console.log("Logged-in user:", parsedUser);
     } else {
-      alert("User is not registered");
-      navigate("/");
+      alert("You are not logged in. Redirecting to the login page.");
+      navigate("/login");
     }
   }, [navigate]);
-
   return (
     <>
       <Navigation />
