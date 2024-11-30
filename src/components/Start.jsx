@@ -10,15 +10,14 @@ export default function Start({ start }) {
       <section className="media">
         <img src="src/assets/testlogo.png" alt="Website Logo" />
       </section>
+      <div className="logo-container">
+        <img
+          src="src/assets/testlogo.png"
+          alt="Website Logo"
+          className="logo"
+        />
+      </div>
       <section className="main-content bg-black flex flex-col items-center gap-10">
-        <div className="flex w-screen">
-          <img
-            src="src/assets/testlogo.png"
-            alt="Website Logo"
-            className="logo"
-          />
-        </div>
-
         <section className="intro">
           <div className="movigo">
             <h1>
@@ -31,8 +30,8 @@ export default function Start({ start }) {
               latest hits.
             </h4>
           </div>
+          <LimeChecks />
         </section>
-        <LimeChecks />
         <Brands />
         <Popkorn start={start} />
         <div className="rating">

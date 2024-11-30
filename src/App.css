@@ -38,7 +38,7 @@ input.error {
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   letter-spacing: 3px;
-  width: 150px;
+  width: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,10 +67,14 @@ input.error {
 }
 
 .logo {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   /* margin: 20px; */
-  padding: 20px;
+  padding: 10px;
+}
+
+.logo-container {
+  background-color: rgb(0, 0, 0);
 }
 
 .stars {
@@ -84,7 +88,7 @@ input.error {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.2rem;
   cursor: default;
 }
 
@@ -106,6 +110,7 @@ input.error {
   flex-direction: column;
   gap: 20px;
   cursor: default;
+  margin-top: 20px;
 }
 
 .movigo {
@@ -209,7 +214,7 @@ nav {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
-  background-color: rgb(18, 18, 18);
+  background-color: rgb(10, 10, 10);
   height: 5rem;
   gap: 20px;
   width: 100%;
