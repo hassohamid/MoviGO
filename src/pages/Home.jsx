@@ -5,39 +5,37 @@ import axios from "axios";
 export default function Home() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
+  // const [isSearching, setIsSearching] = useState(false);
 
   const getData = async () => {
     if (!searchTerm) return;
 
     try {
       const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=6665ca&s=${searchTerm}`
+        "https://api.themoviedb.org/3/movie/popular?api_key=33b2ff1dd7b8169d8e4f71f4c91b6c3f"
       );
-      setData(response.data.Search);
-      console.log(response);
+      setData(response.data.results);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const handleSearch = () => {
-    setIsSearching(true);
-    getData();
-  };
+  // const handleSearch = () => {
+  //   setIsSearching(true);
+  //   getData();
+  // };
 
   useEffect(() => {
-    if (isSearching) {
-      setIsSearching(false);
-    }
-  }, [data]);
+    getData();
+  }, []);
 
   return (
     <>
       <Navigation />
-      <div className="main-content">
+      <section className="main-content">
         <div className="flex justify-center items-center flex-col gap-5">
-          <div className=" h-max flex flex-col justify-center items-center gap-5">
+          {/* <div className=" h-max flex flex-col justify-center items-center gap-5">
             <label
               htmlFor=""
               className="text-3xl font-extrabold drop-shadow-lg"
@@ -57,7 +55,7 @@ export default function Home() {
             >
               Search
             </button>
-          </div>
+          </div> */}
           {data && data.length > 0 ? (
             <div className="flex flex-wrap justify-center gap-5 my-10">
               {data.map((item, i) => (
@@ -65,10 +63,12 @@ export default function Home() {
                   key={i}
                   className="flex flex-wrap flex-col items-center max-w-xs w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
                 >
-                  <h1 className="text-center">{item.Title}</h1>
+                  <h1 className="text-center text-white">
+                    {item.original_title}
+                  </h1>
                   <img
                     className="w-full max-w-[200px] rounded-md"
-                    src={item.Poster}
+                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.Title}
                   />
                 </div>
@@ -80,7 +80,7 @@ export default function Home() {
             </p>
           )}
         </div>
-      </div>
+      </section>
     </>
   );
 }
