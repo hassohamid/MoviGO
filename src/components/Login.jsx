@@ -121,7 +121,7 @@ export default function Login() {
             Password
           </label>
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             onChange={(e) => setRegisterPassword(e.target.value)}
             className="p-1 rounded-md shadow-lg"
