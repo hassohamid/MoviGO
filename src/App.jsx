@@ -1,112 +1,37 @@
-import {
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./components/Login";
 import Start from "./components/Start";
 import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
-import { useEffect, useState } from "react";
-import Navigation from "./components/Navigation";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 function App() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn") === "true"
-  );
-  const [pass] = useState("123");
+
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("formData");
     return savedData ? JSON.parse(savedData) : { username: "", password: "" };
   });
-  const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      console.log("User is logged in, but no redirect yet.");
-    }
-  }, [isLoggedIn]);
-
-  const handleLogOut = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
-    navigate("/");
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleStart = () => {
     navigate("/login");
   };
 
-  const handleLogin = () => {
-    if (formData.password === pass) {
-      setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", "true");
-      navigate("/profile");
-    } else {
-      setErrorMessage("Unknown password");
-    }
-  };
-
-  const showHeader = location.pathname !== "/";
-
   return (
     <>
       {showHeader && <Navigation />}
       <Routes>
-        {/* Start page */}
         <Route path="/" element={<Start start={handleStart} />} />
-
-        {/* Login page */}
         <Route
           path="/login"
-          element={
-            isLoggedIn ? (
-              <Navigate to="/profile" />
-            ) : (
-              <Login
-                formData={formData}
-                onInputChange={handleInputChange}
-                onLogin={handleLogin}
-                errorMessage={errorMessage}
-              />
-            )
-          }
+          element={<Login setFormData={setFormData} formData={formData} />}
         />
-
-        {/* Main page (after login) */}
-        <Route
-          path="/home"
-          element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
-        />
-
-        {/* Profile (after login) */}
-        <Route
-          path="/profile"
-          element={
-            isLoggedIn ? (
-              <Profile formData={formData} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-
-        {/* favorites (after login) */}
-        <Route
-          path="/favorites"
-          element={isLoggedIn ? <Favorites /> : <Navigate to="/login" />}
-        />
+        <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
       {isLoggedIn && (
         <button
