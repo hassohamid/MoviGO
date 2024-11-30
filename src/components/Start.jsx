@@ -1,8 +1,6 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
-import VantaBackground from "./VantaBackground";
-import axios from "axios";
 
 const App = ({ start }) => {
   return (
@@ -10,9 +8,7 @@ const App = ({ start }) => {
       <div className="media">
         <img src="src/assets/testlogo.png" alt="Website Logo" />
       </div>
-      <div className="main-content">
-        <VantaBackground />
-
+      <div className="main-content h-screen bg-black">
         <img
           src="src/assets/testlogo.png"
           alt="Website Logo"
