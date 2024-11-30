@@ -21,6 +21,11 @@ input.error {
   border: 2px solid red;
 }
 
+.main-content {
+  background-color: black;
+  min-height: 100vh;
+}
+
 .start-button {
   position: absolute;
   bottom: 20%;
@@ -205,6 +210,34 @@ nav {
 
 .favorites:hover {
   color: white;
+}
+
+/* ICONS for start page */
+
+.brands {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  background-color: rgb(20, 20, 20);
+  height: 100px;
+  gap: 20px;
+}
+
+.brand:hover {
+  filter: brightness(50%);
+}
+
+.brand {
+  border-radius: 100%;
+  background-color: black;
+  padding: 8px;
+}
+
+.platform {
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  color: #cbcbcb;
 }
 
 /* MOBILE VERSION IN PROGRESS, UNTIL THEN */

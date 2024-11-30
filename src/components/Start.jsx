@@ -2,6 +2,7 @@ import React from "react";
 import LimeChecks from "./LimeChecks";
 import Popkorn from "./Popkorn";
 import Stars from "./Stars";
+import Brands from "./Brands";
 
 export default function Start({ start }) {
   return (
@@ -9,7 +10,7 @@ export default function Start({ start }) {
       <div className="media">
         <img src="src/assets/testlogo.png" alt="Website Logo" />
       </div>
-      <div className="main-content h-screen bg-black">
+      <div className="main-content">
         <img
           src="src/assets/testlogo.png"
           alt="Website Logo"
@@ -30,6 +31,7 @@ export default function Start({ start }) {
           </div>
         </div>
         <LimeChecks />
+        <Brands />
         <Popkorn start={start} />
         <div className="rating">
           <h1>
