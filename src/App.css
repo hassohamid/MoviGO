@@ -68,7 +68,7 @@ input.error {
 .logo {
   width: 140px;
   height: 140px;
-  margin: 20px;
+  /* margin: 20px; */
   padding: 20px;
 }
 
