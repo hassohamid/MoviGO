@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom";
-import { RxAvatar } from "react-icons/rx";
-import { MdFavorite } from "react-icons/md";
-import { AiFillHome } from "react-icons/ai";
+import { CiBookmarkPlus } from "react-icons/ci";
 
 export default function Navigation() {
   return (
     <header>
       <nav>
+        <img src="src/assets/testlogo.png" alt="Web Logo" className="logonav" />
         <Link to="/home" className="home">
-          <AiFillHome size={50} />
+          Browse
         </Link>
         <Link to="/favorites" className="favorites">
-          <MdFavorite size={50} />
+          <CiBookmarkPlus size={30} /> Your Lists
         </Link>
         <Link to="/profile" className="avatar">
-          <RxAvatar size={50} />
+          <img src="src/assets/hasso.jpeg" alt="" className="userImg" />
         </Link>
       </nav>
     </header>
