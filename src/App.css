@@ -23,7 +23,7 @@ input.error {
 
 .main-content {
   background-color: black;
-  min-height: 100vh;
+  height: calc(100vh - 120px);
 }
 
 .start-button {
