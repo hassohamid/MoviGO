@@ -15,7 +15,7 @@ export default function LimeChecks() {
     },
   ];
   return (
-    <section className="flex flex-col items-start justify-center mt-10 w-[400px]">
+    <section className="flex flex-col items-start justify-center mt-10 w-[400px] ">
       {limes.map((item, i) => (
         <div key={i} className="flex flex-row-reverse items-center gap-2">
           <p className="text-white text-[1.2rem] font-[500] tracking-tight my-1">

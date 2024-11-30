@@ -222,6 +222,7 @@ nav {
   background-color: rgb(20, 20, 20);
   height: 100px;
   gap: 20px;
+  width: 100%;
 }
 
 .brand:hover {
