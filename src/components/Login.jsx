@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaApple } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { PiSignInBold } from "react-icons/pi";
+
 export default function Login() {
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -63,72 +67,50 @@ export default function Login() {
   };
 
   return (
-    <section className="bg-gray-900 h-screen w-screen flex flex-col items-center justify-center">
-      <div className="flex flex-col gap-5">
-        <label className="text-white text-2xl font-extrabold drop-shadow-md">
-          Username
-        </label>
-        <input
-          name="username"
-          className="p-1 rounded-md shadow-sm drop-shadow-sm"
-          id="username"
-          type="text"
-          placeholder="Username"
-          required
-          onChange={(e) => setLoginUsername(e.target.value)}
-        />
-
-        <label
-          className="text-white text-2xl font-extrabold drop-shadow-md"
-          // htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          name="password"
-          onChange={(e) => setLoginPassword(e.target.value)}
-          className="p-1 rounded-md shadow-sm drop-shadow-sm"
-          id="password"
-          type="password"
-          placeholder="Password"
-          required
-        />
-
-        <button onClick={handleLogin} className="login-button">
-          Login
-        </button>
-        {errorMessage && (
-          <h1 className="text-red-500 text-center">{errorMessage}</h1>
-        )}
-        <div className="flex flex-col gap-5">
-          <h3 className="text-white my-10">Not a user yet? Register here: </h3>
-          <label
-            htmlFor=""
-            className="text-white text-2xl font-extrabold drop-shadow-md"
-          >
-            Username
-          </label>
+    <section className="login-page">
+      <div className="login-container">
+        <div className="methods">
+          <button>
+            <FaApple size={25} className="mr-[10px]" /> Sign in with Apple
+          </button>
+          <button>
+            <FcGoogle size={25} className="mr-[10px]" />
+            Sign in with Google
+          </button>
+        </div>
+        <hr className="mt-8 " />
+        <div className="login-form">
+          <h1 className="text-3xl font-bold drop-shadow-md  mt-4">Sign in</h1>
+          <h4 className=" mt-1 font-medium drop-shadow-md">
+            Enjoy the ultimate experience
+          </h4>
           <input
-            type="text"
+            type="username"
             placeholder="Username"
-            onChange={(e) => setRegisterUser(e.target.value)}
-            className="p-1 rounded-md shadow-lg"
+            name="username"
+            required
+            className="inputs"
           />
-          <label
-            htmlFor=""
-            className="text-white text-2xl font-extrabold drop-shadow-md"
-          >
-            Password
-          </label>
+          <br />
           <input
             type="password"
             placeholder="Password"
-            onChange={(e) => setRegisterPassword(e.target.value)}
-            className="p-1 rounded-md shadow-lg"
+            name="username"
+            required
+            className="inputs"
           />
-          <button className="login-button" onClick={handleRegister}>
-            Register
+          <button>
+            Login
+            <PiSignInBold size={30} className="ml-2" />
           </button>
+        </div>
+        <hr className="mt-8 " />
+        <div className="register-container">
+          <h1 className="text-3xl font-bold drop-shadow-md mt-4">Register</h1>
+          <h4 className=" mt-1 font-medium drop-shadow-md">
+            No account? No worries! Click the button to begin
+          </h4>
+          <button>Create account</button>
         </div>
       </div>
     </section>
