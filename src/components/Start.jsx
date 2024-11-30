@@ -7,17 +7,19 @@ import Brands from "./Brands";
 export default function Start({ start }) {
   return (
     <>
-      <div className="media">
+      <section className="media">
         <img src="src/assets/testlogo.png" alt="Website Logo" />
-      </div>
-      <div className="main-content">
-        <img
-          src="src/assets/testlogo.png"
-          alt="Website Logo"
-          className="logo"
-        />
+      </section>
+      <section className="main-content h-screen bg-black flex flex-col items-center">
+        <div className="flex w-screen">
+          <img
+            src="src/assets/testlogo.png"
+            alt="Website Logo"
+            className="logo"
+          />
+        </div>
 
-        <div className="intro">
+        <section className="intro">
           <div className="movigo">
             <h1>
               <span> Browse. </span>
@@ -29,7 +31,7 @@ export default function Start({ start }) {
               latest hits.
             </h4>
           </div>
-        </div>
+        </section>
         <LimeChecks />
         <Brands />
         <Popkorn start={start} />
@@ -39,7 +41,7 @@ export default function Start({ start }) {
           </h1>
           <Stars />
         </div>
-      </div>
+      </section>
     </>
   );
 }

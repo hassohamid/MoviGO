@@ -6,6 +6,10 @@ export default function Profile() {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
+  const capitalizeWord = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   const handleLogOut = () => {
     sessionStorage.removeItem("currentUser");
     navigate("/");
@@ -41,7 +45,10 @@ export default function Profile() {
     <>
       <Navigation />
       <section className="flex flex-col items-center mt-20">
-        <h1>Welcome to the profile page, {currentUser?.username}!</h1>
+        <h1>
+          Welcome to the profile page,{" "}
+          {currentUser?.username && capitalizeWord(currentUser.username)}!
+        </h1>
         <ProfileButton onClick={handleLogOut}>Log Out</ProfileButton>
         <ProfileButton onClick={deleteAccount}>Delete Account</ProfileButton>
       </section>
