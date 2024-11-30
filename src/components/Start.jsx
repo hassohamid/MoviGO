@@ -10,7 +10,7 @@ export default function Start({ start }) {
       <section className="media">
         <img src="src/assets/testlogo.png" alt="Website Logo" />
       </section>
-      <section className="main-content h-screen bg-black flex flex-col items-center">
+      <section className="main-content bg-black flex flex-col items-center gap-10">
         <div className="flex w-screen">
           <img
             src="src/assets/testlogo.png"

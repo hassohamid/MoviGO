@@ -6,7 +6,7 @@ import { FaDisplay } from "react-icons/fa6";
 
 export default function Brands() {
   return (
-    <div className="brands">
+    <section className="brands">
       <FaDisplay size={40} className="platform cursor-pointer" />
       <SiAppletv color="white" size={50} className="brand cursor-pointer" />
       <RiNetflixFill color="red" size={50} className="brand cursor-pointer" />
@@ -16,6 +16,6 @@ export default function Brands() {
         className="brand cursor-pointer"
       />
       <SiHbo color="white" size={50} className="brand cursor-pointer" />
-    </div>
+    </section>
   );
 }

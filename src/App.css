@@ -22,16 +22,11 @@ input.error {
 }
 
 .main-content {
-  /* background-color: black; */
+  background-color: black;
   height: 100vh;
 }
 
 .start-button {
-  position: absolute;
-  bottom: 20%;
-  left: 0;
-  right: 0;
-  margin: auto;
   background-color: #e50914;
   color: white;
   font-weight: bold;
@@ -85,14 +80,11 @@ input.error {
 }
 
 .rating {
-  position: absolute;
-  bottom: 10%;
-  right: 0;
-  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
   cursor: default;
 }
 
@@ -177,7 +169,6 @@ nav {
 .avatar {
   filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
     drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
-  margin-right: 20px;
 }
 
 .userImg {
@@ -203,7 +194,6 @@ nav {
   font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: -0.016em;
-  margin-right: 20px;
   filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
     drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 }
@@ -220,7 +210,7 @@ nav {
   align-items: center;
   margin-top: 50px;
   background-color: rgb(18, 18, 18);
-  height: 100px;
+  height: 5rem;
   gap: 20px;
   width: 100%;
 }

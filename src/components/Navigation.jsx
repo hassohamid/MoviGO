@@ -7,7 +7,10 @@ export default function Navigation() {
       <nav>
         <img src="src/assets/testlogo.png" alt="Web Logo" className="logonav" />
         <div className="w-screen flex justify-evenly gap-24 items-center">
-          <Link to="/home" className="">
+          <Link
+            to="/home"
+            className="hover:text-white transition-all duration-150"
+          >
             Browse
           </Link>
           <Link to="/favorites" className="favorites">

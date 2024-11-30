@@ -36,7 +36,7 @@ export default function Home() {
     <>
       <Navigation />
       <div className="main-content">
-        <div className="flex justify-center items-center flex-col gap-5 mt-10">
+        <div className="flex justify-center items-center flex-col gap-5">
           <div className=" h-max flex flex-col justify-center items-center gap-5">
             <label
               htmlFor=""
