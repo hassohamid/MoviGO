@@ -2,9 +2,13 @@ import Navigation from "../components/Navigation";
 
 export default function Favorites() {
   return (
-    <div>
+    <>
       <Navigation />
-      <h1>This is favorites page!</h1>
-    </div>
+      <section className="mt-20">
+        <h1 className="text-center font-extrabold text-4xl">
+          This is favorites page!
+        </h1>
+      </section>
+    </>
   );
 }

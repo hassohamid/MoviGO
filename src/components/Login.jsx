@@ -13,19 +13,27 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    let newUser = {
+    if (!registerUsername || !registerPassword) {
+      alert("Both username and password are required.");
+      return;
+    }
+
+    const newUser = {
       username: registerUsername,
       password: registerPassword,
     };
-    // Kolla om det finns users i localStorage
-    if (localStorage.getItem("users")) {
-      //Hämta users, och lägg till ny user
-      let users = JSON.parse(localStorage.getItem("users"));
-      users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users));
-    } else {
-      localStorage.setItem("users", JSON.stringify([newUser]));
+
+    const usersData = localStorage.getItem("users");
+    const users = usersData ? JSON.parse(usersData) : [];
+
+    if (users.find((user) => user.username === registerUsername)) {
+      alert("Username already exists. Please choose a different one.");
+      return;
     }
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
     setRegisterUser("");
     setRegisterPassword("");
     alert("Registration successful! You can now log in.");
@@ -39,7 +47,6 @@ export default function Login() {
       alert("No registered users found. Please register first.");
       return;
     }
-
     //Kolla om det finns en anvandare med username + password
     let loggedInUser = users.find((user) => {
       return user.username === loginUsername && user.password === loginPassword;
@@ -58,10 +65,7 @@ export default function Login() {
   return (
     <section className="bg-gray-900 h-screen w-screen flex flex-col items-center justify-center">
       <div className="flex flex-col gap-5">
-        <label
-          className="text-white text-2xl font-extrabold drop-shadow-md"
-          // htmlFor="username"
-        >
+        <label className="text-white text-2xl font-extrabold drop-shadow-md">
           Username
         </label>
         <input

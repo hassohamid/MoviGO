@@ -22,19 +22,35 @@ export default function Home() {
   };
 
   const handleSearch = () => {
-    setIsSearching(true); // Начать поиск
+    setIsSearching(true);
     getData();
   };
 
   useEffect(() => {
     if (isSearching) {
-      setIsSearching(false); // Сбросить состояние после выполнения запроса
+      setIsSearching(false);
     }
   }, [data]);
 
   return (
     <>
       <Navigation />
+      <div className="main-content bg-neutral-950">
+        <div className=" flex justify-center items-center flex-col gap-5">
+          <div className="mt-20 h-screen">
+            <input
+              type="text"
+              placeholder="Search for movies"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border px-4 py-2 rounded-md mb-4 mt-[50px] text-white"
+            />
+            <button
+              onClick={handleSearch}
+              className="border px-4 py-2 rounded-md bg-blue-500 text-white mb-4"
+            >
+              Search
+            </button>
       <div className="main-content h-screen bg-neutral-950		">
         <div className="w-full flex justify-center items-center flex-col gap-5 p-4">
           <input
@@ -54,6 +70,27 @@ export default function Home() {
             Search
           </button>
 
+            {data && data.length > 0 ? (
+              <div className="flex flex-wrap justify-center gap-5 mt-[30rem]">
+                {data.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex flex-wrap flex-col items-center max-w-xs w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+                  >
+                    <h1 className="text-center">{item.Title}</h1>
+                    <img
+                      className="w-full max-w-[200px] rounded-md"
+                      src={item.Poster}
+                      alt={item.Title}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-white">Write in to show </p>
+            )}
+          </div>
+        </div>
           {data && data.length > 0 ? (
             <div className="flex flex-wrap justify-center gap-5 mt-[30rem]">
               {data.map((item, i) => (
