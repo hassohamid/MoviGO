@@ -5,30 +5,38 @@ import axios from "axios";
 export default function Home() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState([]);
+  const [page, setPage] = useState(1);
   // const [isSearching, setIsSearching] = useState(false);
 
   const getData = async () => {
     if (!searchTerm) return;
 
-    try {
-      const response = await axios.get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=33b2ff1dd7b8169d8e4f71f4c91b6c3f"
-      );
-      setData(response.data.results);
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2IyZmYxZGQ3YjgxNjlkOGU0ZjcxZjRjOTFiNmMzZiIsIm5iZiI6MTcwNDM3MTc5MC4yMTIsInN1YiI6IjY1OTZhNjRlODY5ZTc1NzA4ZTA2ODBlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.81BnBa3jtZMc6EQsv2M5KbpPCnRooP9M2RHhTjO32Ls",
+      },
+    };
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`,
+      options
+    );
+    setData(response.data.results);
   };
 
-  // const handleSearch = () => {
-  //   setIsSearching(true);
-  //   getData();
-  // };
+  const nextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const prevPage = () => {
+    setPage((prevPage) => prevPage - 1);
+  };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -79,6 +87,21 @@ export default function Home() {
               No data for now... Please find something for you!{" "}
             </p>
           )}
+          <div className="flex gap-5 mb-5">
+            <button
+              onClick={prevPage}
+              className="text-white text-2xl border border-white px-4 rounded-lg hover:scale-105 hover:bg-slate-500 transition-all duration-200"
+              disabled={page === 1} // Блокируем кнопку, если это первая страница
+            >
+              Previous
+            </button>
+            <button
+              onClick={nextPage}
+              className="text-white text-2xl border border-white px-4 rounded-lg hover:scale-105 hover:bg-slate-500 transition-all duration-200"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </section>
     </>
