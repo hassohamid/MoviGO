@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <div className="main-content bg-neutral-950		">
+      <div className="main-content h-screen bg-neutral-950		">
         <div className="w-full flex justify-center items-center flex-col gap-5 p-4">
           <input
             type="text"
