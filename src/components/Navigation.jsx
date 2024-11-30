@@ -6,15 +6,17 @@ export default function Navigation() {
     <header>
       <nav>
         <img src="src/assets/testlogo.png" alt="Web Logo" className="logonav" />
-        <Link to="/home" className="home">
-          Browse
-        </Link>
-        <Link to="/favorites" className="favorites">
-          <CiBookmarkPlus size={30} /> Your Lists
-        </Link>
-        <Link to="/profile" className="avatar">
-          <img src="src/assets/hasso.jpeg" alt="" className="userImg" />
-        </Link>
+        <div className="w-screen flex justify-evenly gap-24 items-center">
+          <Link to="/home" className="">
+            Browse
+          </Link>
+          <Link to="/favorites" className="favorites">
+            <CiBookmarkPlus size={30} /> Your Lists
+          </Link>
+          <Link to="/profile" className="avatar">
+            <img src="src/assets/hasso.jpeg" alt="" className="userImg" />
+          </Link>
+        </div>
       </nav>
     </header>
   );
