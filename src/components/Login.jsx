@@ -15,25 +15,26 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    // Check if there are empty fields at least one of them
+    if (!loginUsername.trim() || !loginPassword.trim()) {
+      setErrorMessage("Please fill in both username and password.");
+      return;
+    }
+
     let usersData = JSON.parse(localStorage.getItem("users"));
     let users = usersData ? usersData : [];
-
-    // if (!users || users.length === 0) {
-    //   alert("No registered users found. Please register first.");
-    //   return;
-    // }
     //Kolla om det finns en anvandare med username + password
     let loggedInUser = users.find((user) => {
       return user.username === loginUsername && user.password === loginPassword;
     });
 
+    // If successful
     if (loggedInUser) {
       sessionStorage.setItem("currentUser", JSON.stringify(loggedInUser));
       setLoginUsername("");
       setLoginPassword("");
+      setErrorMessage("");
       navigate("/home");
-    } else if (loggedInUser === null) {
-      setErrorMessage("You should fill with both user and pass inputs");
     } else {
       setErrorMessage("User is not registered");
     }
@@ -84,7 +85,11 @@ export default function Login() {
               Login
               <PiSignInBold size={30} className="ml-2" />
             </button>
-            {errorMessage ?? <p>User is not found</p>}
+            {errorMessage ? (
+              <h1 className="text-red-500 mt-5">{errorMessage}</h1>
+            ) : (
+              ""
+            )}
           </div>
           <hr className="mt-8 w-full" />
           <div className="register-container">
