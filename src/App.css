@@ -254,10 +254,9 @@ nav {
 .login-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   background-color: white;
-  height: 650px;
-  width: 500px;
   border-radius: 10px;
   padding: 35px;
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2))
@@ -287,7 +286,8 @@ nav {
 }
 
 .login-form {
-  margin-left: 2rem;
+  width: 22rem;
+  margin: 1px;
 }
 
 .inputs {
@@ -329,10 +329,6 @@ nav {
 
 .login-form button:hover {
   background-color: rgb(255, 91, 99);
-}
-
-.register-container {
-  margin-left: 2rem;
 }
 
 .register-container button {
