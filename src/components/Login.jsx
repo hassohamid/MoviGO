@@ -90,6 +90,7 @@ export default function Login() {
             name="username"
             required
             className="inputs"
+            onChange={(e) => setLoginUsername(e.target.value)}
           />
           <br />
           <input
@@ -98,11 +99,13 @@ export default function Login() {
             name="username"
             required
             className="inputs"
+            onChange={(e) => setLoginPassword(e.target.value)}
           />
-          <button>
+          <button onClick={handleLogin}>
             Login
             <PiSignInBold size={30} className="ml-2" />
           </button>
+          {errorMessage ? <p>User is not registered</p> : ""}
         </div>
         <hr className="mt-8 " />
         <div className="register-container">
