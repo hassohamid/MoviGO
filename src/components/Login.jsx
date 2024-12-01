@@ -31,7 +31,9 @@ export default function Login() {
       sessionStorage.setItem("currentUser", JSON.stringify(loggedInUser));
       setLoginUsername("");
       setLoginPassword("");
-      navigate("/profile");
+      navigate("/home");
+    } else if (loggedInUser === null) {
+      setErrorMessage("You should fill with both user and pass inputs");
     } else {
       setErrorMessage("User is not registered");
     }
