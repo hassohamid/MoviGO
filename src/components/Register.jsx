@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function Register({ closeModal, showRegister }) {
+export default function Register({ closeModal }) {
   //Register inputs
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -29,13 +29,17 @@ export default function Register({ closeModal, showRegister }) {
     setRegisterUsername("");
     setRegisterPassword("");
     alert("Registration successful! You can now log in.");
+    closeModal();
   };
 
   return (
-    <div className="absolute inset-0 bg-transparent/60">
-      <div className=" bg-white p-5 w-80 top-1/3 relative mx-auto min-h-80 drop-shadow-xl rounded-lg">
+    <div className="absolute inset-0 bg-transparent/60" onClick={closeModal}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className=" bg-white p-5 w-80 top-1/3 relative mx-auto min-h-80 drop-shadow-xl rounded-lg"
+      >
         <button
-          className="absolute right-5 top-5 border border-black px-2 rounded-full hover:bg-black hover:text-white transition-all duration-200"
+          className="absolute right-5 top-5 border border-black px-2 rounded-full hover:bg-black hover:text-white transition-all duration-200 hover:rotate-90"
           onClick={closeModal}
         >
           X
