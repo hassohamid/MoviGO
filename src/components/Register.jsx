@@ -86,23 +86,16 @@ export default function Register({ closeModal }) {
           />
           {errorMessage && (
             <p
-              className={`absolute bottom-16 w-[90%] text-center text-red-500 text-sm font-medium mt-2 bg-red-100 border border-red-400 p-2 rounded-lg transition-all duration-300 ${
-                shake ? "animate-shake" : ""
-              } ${errorMessage ? "visible" : "invisible"}`}
+              className={`${shake ? "error-message-shake" : ""} error-message`}
               onAnimationEnd={handleAnimationEnd}
             >
               {errorMessage}
             </p>
           )}
           {successfulMessage && (
-            <p className="text-green-600 absolute bottom-16 w-[90%] text-center font-medium mt-2 bg-green-200 border border-green-400 p-2 rounded-lg transition-all duration-300">
-              {successfulMessage}
-            </p>
+            <p className="success-message">{successfulMessage}</p>
           )}
-          <button
-            className="text-white bg-black rounded-md px-[25px] py-[10px] mt-20 w-full hover:bg-barely-black"
-            onClick={handleRegister}
-          >
+          <button className="create-button" onClick={handleRegister}>
             Create account
           </button>
         </div>
