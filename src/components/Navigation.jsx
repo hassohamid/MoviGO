@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { CiBookmarkPlus } from "react-icons/ci";
+import { CgProfile } from "react-icons/cg";
 
 export default function Navigation() {
   return (
@@ -17,7 +18,11 @@ export default function Navigation() {
             <CiBookmarkPlus size={30} /> Your Lists
           </Link>
           <Link to="/profile" className="avatar">
-            <img src="src/assets/hasso.jpeg" alt="" className="userImg" />
+            <img
+              src="src/assets/avatar.png"
+              className="userImg"
+              alt="Profile Picture"
+            />
           </Link>
         </div>
       </nav>

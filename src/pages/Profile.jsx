@@ -2,6 +2,10 @@ import Navigation from "../components/Navigation";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProfileButton from "../components/ProfileButton";
+import { PiUploadSimple } from "react-icons/pi";
+import { MdOutlinePassword } from "react-icons/md";
+import { GoLock } from "react-icons/go";
+
 export default function Profile() {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
@@ -44,14 +48,44 @@ export default function Profile() {
   return (
     <>
       <Navigation />
-      <section className="flex flex-col items-center mt-20 ">
-        <h1>
-          Welcome to the profile page,{" "}
-          {currentUser?.username && capitalizeWord(currentUser.username)}!
-        </h1>
-        <ProfileButton onClick={handleLogOut}>Log Out</ProfileButton>
-        <ProfileButton onClick={deleteAccount}>Delete Account</ProfileButton>
-      </section>
+      <div className="profile-container">
+        <div className="profile">
+          <h1 className="profile-title">Profile.</h1>
+          <h4 className="profile-description">
+            Manage your account settings with ease.
+          </h4>
+        </div>
+        <div className="setting-container">
+          <div className="settings">
+            <button className="avatar-btn">
+              <PiUploadSimple size={25} className="mr-1.5" /> Change your Avatar
+            </button>
+            <button className="update-btn">
+              <MdOutlinePassword size={25} color="white" className="mr-1.5" />{" "}
+              Update Password{" "}
+            </button>
+          </div>
+        </div>
+        <div className="userInfo">
+          <img
+            src="src/assets/avatar.png"
+            className="userImg"
+            alt="Profile Picture"
+          />
+          <span className="account-name">
+            {currentUser?.username && capitalizeWord(currentUser.username)}
+          </span>
+        </div>
+        <div className="profile-btns">
+          <button className="deletebtn" onClick={deleteAccount}>
+            Delete Account
+          </button>
+          <button className="logoutbtn" onClick={handleLogOut}>
+            <GoLock size={20} className="mr-1.5" />
+            Sign out
+          </button>
+        </div>
+      </div>
     </>
   );
 }
