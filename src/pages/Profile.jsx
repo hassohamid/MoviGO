@@ -71,7 +71,7 @@ export default function Profile() {
   };
 
   const onAvatarChange = (newAvatar) => {
-    setCurrentAvatar(newAvatar); // Обновляем аватар в состоянии
+    setCurrentAvatar(newAvatar);
   };
 
   return (
