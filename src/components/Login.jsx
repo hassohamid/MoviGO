@@ -30,7 +30,7 @@ export default function Login() {
 
     // If successful
     if (loggedInUser) {
-      sessionStorage.setItem("currentUser", JSON.stringify(loggedInUser));
+      localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
       setLoginUsername("");
       setLoginPassword("");
       setErrorMessage("");

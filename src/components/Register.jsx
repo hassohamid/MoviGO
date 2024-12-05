@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import RegisterForm from "./RegisterForm";
 
 export default function Register({ closeModal }) {
-  // Register inputs
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successfulMessage, setSuccessfulMessage] = useState(false);
   const [shake, setShake] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleRegister = () => {
     if (!registerUsername.trim() || !registerPassword.trim()) {
@@ -40,64 +43,29 @@ export default function Register({ closeModal }) {
     }, 1500);
   };
 
-  const handleAnimationEnd = () => {
-    setShake(false);
-  };
-
-  const handleInputChange = (e, setter) => {
-    setter(e.target.value);
-    if (errorMessage) {
-      setErrorMessage("");
-    }
-  };
-
   return (
-    <div className="absolute inset-0 bg-transparent/60" onClick={closeModal}>
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="bg-white p-5 w-[25rem] min-h-[30rem] top-1/4 relative mx-auto drop-shadow-xl rounded-lg flex flex-col items-center justify-center"
-      >
-        <button
-          className="absolute right-5 top-5 z-10 border border-black px-2 rounded-full hover:bg-black hover:text-white transition-all duration-200 hover:rotate-90"
-          onClick={closeModal}
+    <div>
+      <div className="absolute inset-0 bg-transparent/60">
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="bg-white p-5 w-[25rem] min-h-[30rem] top-1/4 relative mx-auto drop-shadow-xl rounded-lg flex flex-col items-center justify-center"
         >
-          X
-        </button>
-        <div className="h-96 w-[25rem] flex flex-col justify-between items-center p-5 gap-5 relative">
-          <h1 className="text-3xl font-bold drop-shadow-md mt-4">Sign Up</h1>
-          <h4 className="text-center font-medium drop-shadow-md">
-            Enjoy the ultimate experience
-          </h4>
-          <input
-            type="username"
-            placeholder="Username"
-            name="username"
-            required
-            className="inputs"
-            onChange={(e) => handleInputChange(e, setRegisterUsername)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            name="username"
-            required
-            className="inputs"
-            onChange={(e) => handleInputChange(e, setRegisterPassword)}
-          />
-          {errorMessage && (
-            <p
-              className={`${shake ? "error-message-shake" : ""} error-message`}
-              onAnimationEnd={handleAnimationEnd}
-            >
-              {errorMessage}
-            </p>
-          )}
-          {successfulMessage && (
-            <p className="success-message">{successfulMessage}</p>
-          )}
-          <button className="create-button" onClick={handleRegister}>
-            Create account
+          <button
+            className="absolute right-5 top-5 z-10 border border-black px-2 rounded-full hover:bg-black hover:text-white transition-all duration-200 hover:rotate-90"
+            onClick={closeModal}
+          >
+            X
           </button>
+          <RegisterForm
+            handleRegister={handleRegister}
+            registerUsername={registerUsername}
+            setRegisterUsername={setRegisterUsername}
+            registerPassword={registerPassword}
+            setRegisterPassword={setRegisterPassword}
+            errorMessage={errorMessage}
+            shake={shake}
+            successfulMessage={successfulMessage}
+          />
         </div>
       </div>
     </div>
