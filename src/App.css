@@ -7,6 +7,7 @@
 * {
   font-family: "Roboto";
   user-select: none;
+  overscroll-behavior: none;
 }
 
 .links {
