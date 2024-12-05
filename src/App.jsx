@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import AvatarProvider from "./components/AvatarProvider";
 
 function App() {
   const navigate = useNavigate();
@@ -20,17 +21,37 @@ function App() {
     navigate("/login");
   };
 
+  const [currentAvatar, setCurrentAvatar] = useState(() => {
+    const savedAvatar = localStorage.getItem("currentAvatar");
+    return savedAvatar || "/src/assets/1.png";
+  });
+
+  const handleAvatarChange = (newAvatarPath) => {
+    setCurrentAvatar(newAvatarPath);
+    localStorage.setItem("currentAvatar", newAvatarPath);
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<Start start={handleStart} />} />
-      <Route
-        path="/login"
-        element={<Login setFormData={setFormData} formData={formData} />}
-      />
-      <Route path="/home" element={<Home />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/favorites" element={<Favorites />} />
-    </Routes>
+    <AvatarProvider>
+      <Routes>
+        <Route path="/" element={<Start start={handleStart} />} />
+        <Route
+          path="/login"
+          element={<Login setFormData={setFormData} formData={formData} />}
+        />
+        <Route path="/home" element={<Home />} />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              currentAvatar={currentAvatar}
+              onAvatarChange={handleAvatarChange}
+            />
+          }
+        />
+        <Route path="/favorites" element={<Favorites />} />
+      </Routes>
+    </AvatarProvider>
   );
 }
 

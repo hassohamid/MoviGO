@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useAvatar } from "./AvatarProvider";
 
-export default function Navigation({ currentAvatar }) {
+export default function Navigation() {
+  const { currentAvatar } = useAvatar();
   return (
     <header>
       <nav>
@@ -12,7 +14,11 @@ export default function Navigation({ currentAvatar }) {
           My Favorites
         </Link>
         <Link to="/profile" className="avatar">
-          <img src={currentAvatar} className="userImg" alt="Profile Picture" />
+          <img
+            src={currentAvatar}
+            className="userImg rounded-full"
+            alt="Profile Picture"
+          />
         </Link>
       </nav>
     </header>

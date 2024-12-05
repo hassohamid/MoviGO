@@ -12,13 +12,12 @@ import { PiUploadSimple } from "react-icons/pi";
 import { MdOutlinePassword } from "react-icons/md";
 import { GoLock } from "react-icons/go";
 import AvatarDashboard from "../components/AvatarDashboard";
+import { useAvatar } from "../components/AvatarProvider";
 
 export default function Profile() {
   const [currentUser, setCurrentUser] = useState(null);
   const [changeAvatar, setChangeAvatar] = useState(false);
-  const [currentAvatar, setCurrentAvatar] = useState(
-    localStorage.getItem("currentAvatar") || avatar1
-  );
+  const { currentAvatar, setCurrentAvatar } = useAvatar();
   const avatars = [
     { id: 1, path: avatar1 },
     { id: 2, path: avatar2 },
@@ -66,16 +65,15 @@ export default function Profile() {
     }
   }, [navigate]);
 
-  const handleAvatarChange = (newAvatarPath) => {
-    setCurrentAvatar(newAvatarPath);
-    localStorage.setItem("currentAvatar", newAvatarPath);
-    console.log("Avatar changed!");
-  };
-
   const toggleAvatar = () => {
     setChangeAvatar(!changeAvatar);
     console.log(changeAvatar);
   };
+
+  const onAvatarChange = (newAvatar) => {
+    setCurrentAvatar(newAvatar); // Обновляем аватар в состоянии
+  };
+
   return (
     <>
       <Navigation currentAvatar={currentAvatar} />
@@ -84,7 +82,7 @@ export default function Profile() {
           <AvatarDashboard
             avatars={avatars}
             changeAvatar={changeAvatar}
-            onAvatarChange={handleAvatarChange}
+            onAvatarChange={onAvatarChange}
           />
         }
         <div className="profile">
