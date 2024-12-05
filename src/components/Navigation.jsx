@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { CiBookmarkPlus } from "react-icons/ci";
-import { CgProfile } from "react-icons/cg";
 
-export default function Navigation() {
+export default function Navigation({ currentAvatar }) {
   return (
     <header>
       <nav>
@@ -14,11 +12,7 @@ export default function Navigation() {
           My Favorites
         </Link>
         <Link to="/profile" className="avatar">
-          <img
-            src="src/assets/avatar.png"
-            className="userImg"
-            alt="Profile Picture"
-          />
+          <img src={currentAvatar} className="userImg" alt="Profile Picture" />
         </Link>
       </nav>
     </header>

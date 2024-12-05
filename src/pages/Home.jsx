@@ -24,6 +24,7 @@ export default function Home() {
       options
     );
     setData(response.data.results);
+    console.log(data);
   };
 
   const nextPage = () => {

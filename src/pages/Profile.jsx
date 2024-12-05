@@ -1,3 +1,9 @@
+import avatar1 from "../assets/1.png";
+import avatar2 from "../assets/2.png";
+import avatar3 from "../assets/3.png";
+import avatar4 from "../assets/4.png";
+import avatar5 from "../assets/5.png";
+import avatar6 from "../assets/6.png";
 import Navigation from "../components/Navigation";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -5,9 +11,23 @@ import ProfileButton from "../components/ProfileButton";
 import { PiUploadSimple } from "react-icons/pi";
 import { MdOutlinePassword } from "react-icons/md";
 import { GoLock } from "react-icons/go";
+import AvatarDashboard from "../components/AvatarDashboard";
 
 export default function Profile() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [changeAvatar, setChangeAvatar] = useState(false);
+  const [currentAvatar, setCurrentAvatar] = useState(
+    localStorage.getItem("currentAvatar") || avatar1
+  );
+  const avatars = [
+    { id: 1, path: avatar1 },
+    { id: 2, path: avatar2 },
+    { id: 3, path: avatar3 },
+    { id: 4, path: avatar4 },
+    { id: 5, path: avatar5 },
+    { id: 6, path: avatar6 },
+  ];
+
   const navigate = useNavigate();
 
   const capitalizeWord = (str) => {
@@ -45,10 +65,28 @@ export default function Profile() {
       navigate("/login");
     }
   }, [navigate]);
+
+  const handleAvatarChange = (newAvatarPath) => {
+    setCurrentAvatar(newAvatarPath);
+    localStorage.setItem("currentAvatar", newAvatarPath);
+    console.log("Avatar changed!");
+  };
+
+  const toggleAvatar = () => {
+    setChangeAvatar(!changeAvatar);
+    console.log(changeAvatar);
+  };
   return (
     <>
-      <Navigation />
-      <div className="profile-container">
+      <Navigation currentAvatar={currentAvatar} />
+      <section className="profile-container relative">
+        {
+          <AvatarDashboard
+            avatars={avatars}
+            changeAvatar={changeAvatar}
+            onAvatarChange={handleAvatarChange}
+          />
+        }
         <div className="profile">
           <h1 className="profile-title">Profile.</h1>
           <h4 className="profile-description">
@@ -57,7 +95,7 @@ export default function Profile() {
         </div>
         <div className="setting-container">
           <div className="settings">
-            <button className="avatar-btn">
+            <button onClick={toggleAvatar} className="avatar-btn">
               <PiUploadSimple size={25} className="mr-1.5" /> Change your Avatar
             </button>
             <button className="update-btn">
@@ -68,8 +106,8 @@ export default function Profile() {
         </div>
         <div className="userInfo">
           <img
-            src="src/assets/avatar.png"
-            className="userImg"
+            src={currentAvatar}
+            className="userImg rounded-full"
             alt="Profile Picture"
           />
           <span className="account-name">
@@ -85,7 +123,7 @@ export default function Profile() {
             Sign out
           </button>
         </div>
-      </div>
+      </section>
     </>
   );
 }
